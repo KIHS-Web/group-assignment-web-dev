@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome To My Insane Asylum</title>
+</head>
+<body>
+
+<h1>1insane A5ylum</h1>
+<p>This is the insane ward. Do be careful fo the patients here, they can get a bit crazy at times.</p>
+
+
+<img src="insane asylum.jpg" alt="Crazy">
+<p>This is a picture of our ward.</p>
+
+<img src="the building.jpg" alt="Outside">
+<p>This is the outside of our asylum, where the patients are held.</p>
+
+</body>
+</html>
