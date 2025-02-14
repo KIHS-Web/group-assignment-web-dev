@@ -5,14 +5,16 @@
 
 <body>
 
-  <p>
-    test paragraph 
-  </p>
   <script>
-    function () 
-      {
-        
-      }
+    	    $("body").append("<button>Click Me</button>");
+    	    $("button").on("click", sayHello);
+    	    $("button").css("border-radius", "5px");
+    	    $("button").css({"background-color":"green", 
+    	    "color":"white"});
     
+    	    function sayHello()
+    	    {
+    	        alert("Happy Valentines Day!");
+    	    }
   </script>
 </body>
