@@ -1,10 +1,19 @@
 <!DOCTYPE html>
 <html>
 <head>
-
   
 </head>
 <body>
-  
+  <script>
+    $("body").append("<button>Click Me</button>");
+    $("button").on("click", valentine);
+    $("button").css("border-radius", "15px");
+    $("button").css({"background-color":"red", "color":"white"});
+      	    
+    	    function valentine()
+    	    {
+    	        alert("Happy Valentine's Day!");
+    	    }
+  </script>
 </body>
 </html>
