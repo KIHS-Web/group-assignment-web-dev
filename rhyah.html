@@ -2,22 +2,36 @@
 
 <head>
 
-  
+ <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>    
+    
 </head>
 
-<body>
-<h1>Welcome!!! :3 </h1>
-  
-</body>
- <center>  <button type= "button" onclick="Rhy()">Click here !!</button>
-  </center>
+<center><h1> Such a totally normal Website !</h1> </center>
+
 <style>
-   
-    <script> 
- function Rhy(){
- 
- alert("Thank you for visiting my site :3!")
- }
+    
+    
+h1 {
+color: pink;
+  }
+</style>
+
+<body>
+    
+    <script>
+        $("body").append("<center><button>I wonder what happens if you click me! :3 </button></center>");
+          $("button").on("click", greatValentines); 
+          $("button").css("border-radius", "5px");
+          $("button").css({"background-color":"pink", 
+    	    "color":"white"});
+    	    $("h1").css({"text-color": "pink"})
+    	    
+    	     function greatValentines()
+    	    {
+    	        alert(" Suprise, Happy Valentines Silly!");
+    	    }
         
     </script>
-</style>
+    
+    
+</body>
