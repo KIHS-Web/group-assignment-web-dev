@@ -2,26 +2,24 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>My Portfolio</title>
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-    <header>
+<header>
         <h1>Troy M. Campbell</h1>
         <em><h4>Kirkwood Highschool Student</h4></em>
-        <nav>
-                <ol>
-        <li>Helloo</li>
-    </ol>
-            <ul>
-                <li><a href="#about"> About</a></li>
-                <li><a href="#projects">Projects</a></li>
-            </ul>
-        </nav>
-    </header>
-    <style>body {
+    <nav>
+        <ul>
+            <li><a href="#about"> ABOUT</a></li>
+            <li><a href="#projects">PROJECTS</a></li>
+        </ul>
+    </nav>
+</header>
+    <style>
+body {
     font-family: Arial, sans-serif;
     margin: 8;
     background-image: url("back.jpg"); 
@@ -54,35 +52,71 @@ section {
     margin: 20px;
     background:#a9e7d1;
     border-radius: 40px;
+    border: solid 3px #ddfff3;
+    
 }
+
 .project {
     margin-bottom: 10px;
 }
 
-</style>
-<script>
-import java.io.*;
-import javax.servlet.*;
-import javax.servlet.http.*;
+#panel, #flip {
+    padding: 30px;
+    margin: 20px;
+    background:#a9e7d1;
+    border-radius: 40px;
+    border: solid 3px #ddfff3;
+    position: center;
 }
-</script>
-<section id="about">
-    
-        <h1>About Me</h1>
-        <p>I am way better than Jason could ever imagine and I could beat him at anything. blah blah blah blah yap yap yap.</p>
-    
-</section>
-<section id="projects">
-        <h1>My Projects</h1>
-<div class="project">
-    
-        <h3>Restaurant</h3>
-        <p><img src="1.png" alt="Restaurant" style="width:1100px;height:700px;"></p>
 
-        <h3>Restroom Log</h3>
-        <p><img src="2.png" alt="Restroom Log" style="width:900px;height:100px;"></p>
-    
+#panel {
+  padding: 50px;
+  display: none;
+}
+</style>
+
+<script>
+$(document).ready(function(){
+  $("#flip").click(function(){
+    $("#panel").slideDown("slow");
+  });
+});
+</script>
+
+<section id="about">
+        <center><h1>About Me</h1></center>
+        <center><p>Let's be honest—when it comes to pretty much everything, I've got Jason beat. While he's out there trying his best, I'm out here effortlessly taking the lead. Whether it's my sharp mind, creativity, or just the way I handle any situation, I'm the one who stands out.<br/><br/>
+                    I've got this perfect balance of ambition and charm that makes everything I do look easy. Jason might try, but let's be real—no one can match what I bring to the table. When it comes to handling challenges, I don't just get by—I crush them.<br/><br/>
+                    It's clear: I'm on a whole other level, and Jason's still just trying to keep up. But hey, I'm not complaining. The view from the top is great, and I'm more than happy to let him watch me shine.</p></center>
+</section>
+
+</section>
+<div id="flip"><center><h2>Here are my projects!</h2>
+<strong><p>Click here</p></strong></center></div>
+<div id="panel">
+            
+        <center><h1>Restaurant</h1></center>
+        <center><p><img src="1.png" alt="Restaurant" style="width:1100px;height:700px;"></p></center>
+
+        <center><h2>Restroom Log</h2></center>
+        <center><p><img src="2.png" alt="Restroom Log" style="width:900px;height:100px;"></p></center>
+        
 </div>
+
+</body>
+</html>
+<section id="projects">
+    
+    <h1>My Projects</h1>
+    <div class="project">
+    
+    <h3>Restaurant</h3>
+    <p><img src="1.png" alt="Restaurant" style="width:1100px;height:700px;"></p>
+
+    <h3>Restroom Log</h3>
+    <p><img src="2.png" alt="Restroom Log" style="width:900px;height:100px;"></p>
+    
+    </div>
 </section>
 </body>
 </html>
