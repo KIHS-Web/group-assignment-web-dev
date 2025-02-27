@@ -1,87 +1,169 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <style>
-            html,body {
-             height: 95%;   
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dinosaur Jumping Game</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden; /* Prevent scrollbars */
+            background-color: #f0f0f0;
+        }
+        #gameArea {
+            width: 100vw;
+            height: 100vh;
+            position: relative;
+            background-color: #87CEEB;
+        }
+        #dinosaur {
+            width: 50px;
+            height: 50px;
+            background-color: green;
+            position: absolute;
+            bottom: 0;
+            left: 50px;
+        }
+        .cactus {
+            width: 30px;
+            height: 50px;
+            background-color: brown;
+            position: absolute;
+            bottom: 0;
+        }
+        #score {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            font-size: 24px;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+
+<div id="gameArea">
+    <div id="dinosaur"></div>
+    <div id="score">Score: 0</div>
+</div>
+
+<script>
+    $(document).ready(function() {
+        const dinosaur = $('#dinosaur');
+        const gameArea = $('#gameArea');
+        const scoreElement = $('#score');
+        const gameAreaWidth = gameArea.width();
+        const gameAreaHeight = gameArea.height();
+        const dinosaurWidth = dinosaur.width();
+        const dinosaurHeight = dinosaur.height();
+
+        const jumpHeight = 150; // Jump height in pixels
+        const gravity = 5; // Simulate gravity
+        const cactusSpeed = 5; // Cactus speed
+        let isJumping = false; // Check if the dinosaur is jumping
+        let score = 0; // Track score
+        let gameOver = false; // Track if the game is over
+
+        // Function to make the dinosaur jump
+        function jump() {
+            if (!isJumping && !gameOver) {
+                isJumping = true;
+                let jumpStartPos = dinosaur.position().top;
+
+                // Jump up
+                dinosaur.animate({ bottom: `+=${jumpHeight}` }, 300, 'swing', function() {
+                    // Fall down
+                    dinosaur.animate({ bottom: `-=${jumpHeight}` }, 300, 'swing', function() {
+                        isJumping = false; // Reset jumping state
+                    });
+                });
             }
-            #franken-div {
-                height: 50px;
-                width: 50px;
-                background-color: green;
-                position: relative;
+        }
+
+        // Function to generate a cactus
+        function createCactus() {
+            if (!gameOver) {
+                const cactus = $('<div class="cactus"></div>');
+                const cactusHeight = Math.floor(Math.random() * 50) + 30; // Random cactus height between 30 and 80
+                cactus.height(cactusHeight);
+                cactus.css('right', 0);
+                cactus.css('bottom', 0);
+                gameArea.append(cactus);
+
+                // Move cactus to the left
+                cactus.animate({ left: `-=${gameAreaWidth + cactus.width()}` }, 2000, 'linear', function() {
+                    cactus.remove(); // Remove cactus when it goes off-screen
+                    if (!gameOver) {
+                        score += 1;
+                        scoreElement.text('Score: ' + score);
+                    }
+                });
             }
-            button {
-                margin: 5px;
-                padding: 10px;
-                font-size: 15px;
-                font-family: creepster, sans-serif;
+        }
+
+        // Collision detection between dinosaur and cactus using offset()
+        function checkCollision(cactus) {
+            const cactusOffset = cactus.offset(); // Get absolute position of the cactus
+            const cactusWidth = cactus.width();
+            const cactusHeight = cactus.height();
+            const dinoOffset = dinosaur.offset(); // Get absolute position of the dinosaur
+
+            // Check if the dinosaur's bounding box collides with cactus's bounding box
+            if (
+                dinoOffset.left + dinosaurWidth > cactusOffset.left &&  // Right edge of dino hits left edge of cactus
+                dinoOffset.left < cactusOffset.left + cactusWidth &&    // Left edge of dino hits right edge of cactus
+                dinoOffset.top + dinosaurHeight > cactusOffset.top &&   // Bottom of dino is above top of cactus
+                dinoOffset.top < cactusOffset.top + cactusHeight        // Top of dino is below bottom of cactus
+            ) {
+                // Game over if there is a collision
+                gameOver = true;
+                alert('Game Over! Your score: ' + score);
+                resetGame();
             }
-            .container {
-                height: 50%;
-                display: flex;
-                align-items: center;
-                justify-content: center;
+        }
+
+        // Reset game
+        function resetGame() {
+            score = 0;
+            scoreElement.text('Score: 0');
+            dinosaur.css('left', '50px'); // Reset position of dinosaur
+            dinosaur.css('bottom', '0px'); // Reset the dinosaur's bottom position
+            gameOver = false; // Reset game over state
+        }
+
+        // Continuous movement of dinosaur and cactus generation
+        setInterval(function() {
+            if (!gameOver) {
+                createCactus(); // Create new cactus every 2 seconds
+
+                // Check collision for each cactus
+                $('.cactus').each(function() {
+                    checkCollision($(this));
+                });
             }
-        </style>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <script
-          src="https://code.jquery.com/color/jquery.color-2.1.2.min.js"
-          integrity="sha256-H28SdxWrZ387Ldn0qogCzFiUDDxfPiNIyJX7BECQkDE="
-          crossorigin="anonymous">//Allows for color animation!</script>
-        <script src='https://use.edgefonts.net/creepster.js'>//Allows for the spooky font!</script>
-    </head>
-    
-    <body>
-        <div class="container">
-            <button id="square">Square</button>
-            <button id="circle">Circle</button>
-            <button id="rect">Rectangle</button>
-            <button id="size">Change Size</button>
-            <button id="color">Change Color</button>
-            <button id="rotate">Rotate</button> <!-- Added Rotate Button -->
-        </div>
-        <div class="container">
-            <div id="franken-div"></div>
-        </div>
-        <script>
-            $('#square').click(function() {
-                $('#franken-div').animate({
-                    width: $('#franken-div').height(),
-                    borderRadius: '0px'
-                }, 500);
-            });
+        }, 2000); // Cactus is generated every 2 seconds
 
-            $('#circle').click(function() {
-                $('#franken-div').animate({
-                    borderRadius: '50%'
-                }, 500);
-            });
+        // Key event listener for jumping
+        $(document).keydown(function(e) {
+            if ((e.key === ' ' || e.key === 'ArrowUp') && !gameOver) {
+                jump(); // Jump when space bar or arrow up is pressed
+            }
+        });
 
-            $('#rect').click(function() {
-                $('#franken-div').animate({
-                    width: $('#franken-div').height() * 2,
-                    borderRadius: '0px'
-                }, 500);
-            });
+        // Optional: Gravity (gravity effect on dino)
+        function applyGravity() {
+            if (!isJumping && !gameOver) {
+                let bottomPos = dinosaur.position().top + dinosaur.height();
+                if (bottomPos < gameAreaHeight) {
+                    dinosaur.css("bottom", `${bottomPos + gravity}px`);
+                }
+            }
+        }
 
-            $('#color').click(function() {
-                var color = prompt("Enter a color:");
-                $('#franken-div').animate({ backgroundColor: color }, 1000);
-            });
+        setInterval(applyGravity, 20); // Gravity applied every 20ms
+    });
+</script>
 
-            $('#size').click(function() {
-                var width = prompt("Enter a width:");
-                var height = prompt("Enter a height:");
-                $('#franken-div').animate({
-                    width: width + 'px',
-                    height: height + 'px'
-                }, 500);
-            });
-
-            $('#rotate').click(function() {
-                $('#franken-div').css('transform', 'rotate(360deg)');
-            });
-        </script>
-    </body>
+</body>
 </html>
