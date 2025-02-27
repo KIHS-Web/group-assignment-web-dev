@@ -3,7 +3,39 @@
 <head>
 
  <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>    
-    
+
+
+ <style>
+#heart {
+position: center;
+ width: 100px;
+ height: 90px;
+}
+
+  #heart:before, #heart:after {
+position: absolute;
+   content: "";
+   left: 50px;
+   top:0;
+   width: 50px;
+   height: 80px;
+   background: #ffc4d8;
+   border-radius: 50px 50px 0 0;
+   transform: rotate(-45deg);
+   transform-origin: 0 100%;
+   
+  }
+
+  #heart:after {
+   left: 0;
+   transform: rotate(45deg);
+   transform-origin: 100% 100%;
+  }
+
+
+
+  
+ </style>
 </head>
 
 <center><h1> Such a totally normal Website !</h1> </center>
@@ -17,7 +49,7 @@ color: pink;
 </style>
 
 <body>
-    
+    <div id="heart"></div>
     <script>
         $("body").append("<center><button>I wonder what happens if you click me! :3 </button></center>");
           $("button").on("click", greatValentines); 
@@ -30,6 +62,11 @@ color: pink;
     	    {
     	        alert(" Suprise, Happy Valentines Silly!");
     	    }
+
+      $("#heart").click(function(){
+
+                $("div").animate({height: "300px", width: "300px"}, "fast");
+            })
         
     </script>
     
