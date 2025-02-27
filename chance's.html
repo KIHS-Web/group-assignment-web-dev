@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Bruzz Games</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <h1>The Bruzz Games</h1>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">Home</a></li>
+                <li><a href="#">Games</a></li>
+                <li><a href="#">Consoles</a></li>
+                <li><a href="#">Accessories</a></li>
+                <li><a href="#">Deals</a></li>
+                <li><a href="#">Support</a></li>
+            </ul>
+           	<div id="cart">
+        	<h2>Cart</h2>
+        	<p>Items in Cart: <span id="cart-count">0</span></p>
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSa1hNhxfP_hC-		rq3ZchlNzgo1DiIWrmrWBHg&s">
+    	</div>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <h2>Big Discounts on Games!</h2>
+            <button onclick="shopNow()">Shop Now</button>
+        </section>
+
+        <section class="products">
+            <h2>Featured Products</h2>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Game 1">
+                    <h3>Game 1</h3>
+                    <p>$49.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Game 2">
+                    <h3>Game 2</h3>
+                    <p>$59.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Game 3">
+                    <h3>Game 3</h3>
+                    <p>$39.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+            <br>
+            <div class="product-grid">
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Game 4">
+                    <h3>Game 4</h3>
+                    <p>$49.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Game 5">
+                    <h3>Game 3</h3>
+                    <p>$59.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+                <div class="product-card">
+                    <img src="https://via.placeholder.com/150" alt="Game 6">
+                    <h3>Game 6</h3>
+                    <p>$39.99</p>
+                    <button class="add-to-cart">Add to Cart</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-links">
+            <a href="#">Privacy Policy</a>
+            <a href="#">Terms of Service</a>
+            <a href="#">Contact Us</a>
+        </div>
+        <p>&copy; 2025 The Bruzz Games</p>
+    </footer>
+    <style>
+* {	
+	margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+header {
+    background-color: #222;
+    color: white;
+    padding: 15px 0;
+    text-align: center;
+}
+
+img {
+	height: 32px;
+    width: 32px;
+    mix-blend-mode: multiply;
+}
+
+#cart {
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.itemCart {
+    right: 0;
+    position: absolute;
+    top: 0;
+    height: 100%;
+}
+
+header .logo h1 {
+    font-size: 2.5rem;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+}
+
+.hero {
+    background-color: #d3d3d3;
+    padding: 50px;
+    text-align: center;
+}
+
+.hero h2 {
+    font-size: 2.5rem;
+    margin-bottom: 20px;
+}
+
+button {
+    background-color: #00A9E0;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color: #007ba7;
+}
+
+.products {
+    padding: 20px;
+    text-align: center;
+}
+
+.product-grid {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.product-card {
+    background-color: white;
+    border: 1px solid #ddd;
+    padding: 20px;
+    width: 250px;
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #222;
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+footer .footer-links a {
+    color: white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+footer .footer-links a:hover {
+    text-decoration: underline;
+}
+</style>
+<script>
+var cartCount = 0;
+
+	$(".add-to-cart").on("click", function() {
+    	if (confirm("Are you sure you want to add this item to your cart?")) {
+        	cartCount++;
+            $("#cart-count").text(cartCount);
+            $("<li>").text($(this).siblings(".item-name").text()).appendTo("#cart-items");
+             }
+            });
+</script>
+</body>
+</html>
