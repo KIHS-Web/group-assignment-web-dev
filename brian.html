@@ -1,46 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>LeBron James: King of Basketball</title>
-  <link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LeBron Animation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #101010;
+            color: white;
+            text-align: center;
+        }
+
+        #lebron-container {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .lebron-image {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            opacity: 0;
+            animation: fadeInOut 8s infinite;
+            transition: all 2s ease;
+        }
+
+        @keyframes fadeInOut {
+            0%, 100% {
+                opacity: 0;
+            }
+            25%, 75% {
+                opacity: 1;
+            }
+        }
+
+        h1 {
+            position: absolute;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 2.5rem;
+            color: #FFD700;
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>LeBron James: King of Basketball</h1>
-  </header>
 
-  <main>
-    <section class="intro">
-      <p>LeBron James is widely regarded as one of the greatest basketball players of all time. Known for his incredible skill, leadership, and ability to perform under pressure, LeBron has earned his place in NBA history.</p>
-    </section>
+    <h1>LeBron James - The King!</h1>
 
-    <section class="bio">
-      <h2>Early Life</h2>
-      <p>LeBron James was born on December 30, 1984, in Akron, Ohio. He was raised by his single mother, Gloria James, and grew up with a passion for basketball. From a young age, he was recognized for his athletic abilities and was eventually drafted first overall in the 2003 NBA Draft.</p>
-    </section>
+    <div id="lebron-container">
+        <img src="lebron1.jpg" alt="LeBron 1" class="lebron-image" id="image1">
+        <img src="lebron2.jpg" alt="LeBron 2" class="lebron-image" id="image2">
+        <img src="lebron3.jpg" alt="LeBron 3" class="lebron-image" id="image3">
+    </div>
 
-    <section class="images">
-      <h2>LeBron in Action</h2>
-      <div class="gallery">
-        <img src="https://example.com/lebron1.jpg" alt="LeBron James dunking" class="lebron-image">
-        <img src="https://example.com/lebron2.jpg" alt="LeBron James celebrating" class="lebron-image">
-        <img src="https://example.com/lebron3.jpg" alt="LeBron James shooting" class="lebron-image">
-      </div>
-    </section>
+    <script>
+        // JavaScript logic to control the image display
+        let images = document.querySelectorAll('.lebron-image');
+        let currentImageIndex = 0;
 
-    <section class="quote">
-      <h2>LeBron's Famous Quote</h2>
-      <blockquote id="quote">"I like criticism. It makes you strong."</blockquote>
-      <button onclick="changeQuote()">Change Quote</button>
-    </section>
-  </main>
+        // Function to change image opacity for animation
+        function changeImage() {
+            images.forEach((img, index) => {
+                img.style.opacity = index === currentImageIndex ? 1 : 0;
+            });
+            currentImageIndex = (currentImageIndex + 1) % images.length;
+        }
 
-  <footer>
-    <p>&copy; 2025 LeBron James Fan Page</p>
-  </footer>
+        // Change image every 2.5 seconds
+ 
 
-  <script src="script.js"></script>
-</body>
-</html>
