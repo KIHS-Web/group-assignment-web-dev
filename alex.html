@@ -1,169 +1,124 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dinosaur Jumping Game</title>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <style>
-        body {
-            margin: 0;
-            overflow: hidden; /* Prevent scrollbars */
-            background-color: #f0f0f0;
-        }
-        #gameArea {
-            width: 100vw;
-            height: 100vh;
-            position: relative;
-            background-color: #87CEEB;
-        }
-        #dinosaur {
-            width: 50px;
-            height: 50px;
-            background-color: green;
-            position: absolute;
-            bottom: 0;
-            left: 50px;
-        }
-        .cactus {
-            width: 30px;
-            height: 50px;
-            background-color: brown;
-            position: absolute;
-            bottom: 0;
-        }
-        #score {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            font-size: 24px;
-            color: #333;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Game Haven</title>
+  <style>
+    /* Colors */
+    :root {
+      --primary-color: #000000; 
+      --secondary-color: #A9A9A9; 
+      --accent-color: #5A4D41F; 
+      --highlight-color: #006400;
+    }
+
+    /* Typography */
+    body {
+      font-family: 'Merriweather', serif;
+      background-color: var(--secondary-color);
+      margin: 0;
+      padding: 0;
+      color: var(--highlight-color);
+    }
+
+    header {
+      background-color: var(--primary-color);
+      padding: 20px;
+      text-align: center;
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 3em;
+      color: var(--highlight-color);
+    }
+
+    .button {
+      background-color: var(--accent-color);
+      color: var(--highlight-color);
+      padding: 10px 20px;
+      border: none;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.2em;
+      cursor: pointer;
+      text-transform: uppercase;
+      margin-top: 20px;
+    }
+
+    .button:hover {
+      background-color: var(--primary-color);
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .game-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 20px;
+      margin: 20px;
+    }
+
+    .game-card {
+      background-color: var(--primary-color);
+      color: var(--highlight-color);
+      padding: 15px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .game-card img {
+      max-width: 100%;
+      border-radius: 10px;
+      margin-bottom: 10px;
+    }
+
+    .game-card h3 {
+      font-family: 'Montserrat', sans-serif;
+      margin: 10px 0;
+    }
+
+    footer {
+      background-color: var(--accent-color);
+      text-align: center;
+      padding: 10px;
+      position: relative;
+    }
+
+    footer p {
+      margin: 0;
+      font-family: 'Merriweather', serif;
+      font-size: 0.9em;
+    }
+  </style>
 </head>
 <body>
-
-<div id="gameArea">
-    <div id="dinosaur"></div>
-    <div id="score">Score: 0</div>
-</div>
-
-<script>
-    $(document).ready(function() {
-        const dinosaur = $('#dinosaur');
-        const gameArea = $('#gameArea');
-        const scoreElement = $('#score');
-        const gameAreaWidth = gameArea.width();
-        const gameAreaHeight = gameArea.height();
-        const dinosaurWidth = dinosaur.width();
-        const dinosaurHeight = dinosaur.height();
-
-        const jumpHeight = 150; // Jump height in pixels
-        const gravity = 5; // Simulate gravity
-        const cactusSpeed = 5; // Cactus speed
-        let isJumping = false; // Check if the dinosaur is jumping
-        let score = 0; // Track score
-        let gameOver = false; // Track if the game is over
-
-        // Function to make the dinosaur jump
-        function jump() {
-            if (!isJumping && !gameOver) {
-                isJumping = true;
-                let jumpStartPos = dinosaur.position().top;
-
-                // Jump up
-                dinosaur.animate({ bottom: `+=${jumpHeight}` }, 300, 'swing', function() {
-                    // Fall down
-                    dinosaur.animate({ bottom: `-=${jumpHeight}` }, 300, 'swing', function() {
-                        isJumping = false; // Reset jumping state
-                    });
-                });
-            }
-        }
-
-        // Function to generate a cactus
-        function createCactus() {
-            if (!gameOver) {
-                const cactus = $('<div class="cactus"></div>');
-                const cactusHeight = Math.floor(Math.random() * 50) + 30; // Random cactus height between 30 and 80
-                cactus.height(cactusHeight);
-                cactus.css('right', 0);
-                cactus.css('bottom', 0);
-                gameArea.append(cactus);
-
-                // Move cactus to the left
-                cactus.animate({ left: `-=${gameAreaWidth + cactus.width()}` }, 2000, 'linear', function() {
-                    cactus.remove(); // Remove cactus when it goes off-screen
-                    if (!gameOver) {
-                        score += 1;
-                        scoreElement.text('Score: ' + score);
-                    }
-                });
-            }
-        }
-
-        // Collision detection between dinosaur and cactus using offset()
-        function checkCollision(cactus) {
-            const cactusOffset = cactus.offset(); // Get absolute position of the cactus
-            const cactusWidth = cactus.width();
-            const cactusHeight = cactus.height();
-            const dinoOffset = dinosaur.offset(); // Get absolute position of the dinosaur
-
-            // Check if the dinosaur's bounding box collides with cactus's bounding box
-            if (
-                dinoOffset.left + dinosaurWidth > cactusOffset.left &&  // Right edge of dino hits left edge of cactus
-                dinoOffset.left < cactusOffset.left + cactusWidth &&    // Left edge of dino hits right edge of cactus
-                dinoOffset.top + dinosaurHeight > cactusOffset.top &&   // Bottom of dino is above top of cactus
-                dinoOffset.top < cactusOffset.top + cactusHeight        // Top of dino is below bottom of cactus
-            ) {
-                // Game over if there is a collision
-                gameOver = true;
-                alert('Game Over! Your score: ' + score);
-                resetGame();
-            }
-        }
-
-        // Reset game
-        function resetGame() {
-            score = 0;
-            scoreElement.text('Score: 0');
-            dinosaur.css('left', '50px'); // Reset position of dinosaur
-            dinosaur.css('bottom', '0px'); // Reset the dinosaur's bottom position
-            gameOver = false; // Reset game over state
-        }
-
-        // Continuous movement of dinosaur and cactus generation
-        setInterval(function() {
-            if (!gameOver) {
-                createCactus(); // Create new cactus every 2 seconds
-
-                // Check collision for each cactus
-                $('.cactus').each(function() {
-                    checkCollision($(this));
-                });
-            }
-        }, 2000); // Cactus is generated every 2 seconds
-
-        // Key event listener for jumping
-        $(document).keydown(function(e) {
-            if ((e.key === ' ' || e.key === 'ArrowUp') && !gameOver) {
-                jump(); // Jump when space bar or arrow up is pressed
-            }
-        });
-
-        // Optional: Gravity (gravity effect on dino)
-        function applyGravity() {
-            if (!isJumping && !gameOver) {
-                let bottomPos = dinosaur.position().top + dinosaur.height();
-                if (bottomPos < gameAreaHeight) {
-                    dinosaur.css("bottom", `${bottomPos + gravity}px`);
-                }
-            }
-        }
-
-        setInterval(applyGravity, 20); // Gravity applied every 20ms
-    });
-</script>
-
+  <header>
+    <h1>Game Haven</h1>
+    <button class="button">Shop Now</button>
+  </header>
+  <section>
+    <h2>Our Top Games</h2>
+    <div class="game-grid">
+      <div class="game-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b5/PVZBFN.jpeg/220px-PVZBFN.jpeg" alt="Game 1">
+        <h3>Plants vs Zombies Battle for Neighborville</h3>
+        <p>Welcome to Neighborville, where all is well. Except that a crazy new coniferous conflict between brain-less and botanicals is brewing! What are you gonna do – call the crops? Soil your plants? Prepare to kick some grass in a plant-on-zombie conflict that will take you to the outer edges of Neighborville and back again. Customize Every Character for Battle
+Join the newest bloom in the age-old battle between plants and zombies with 20 fully customizable classes at launch, including a Team Play class for each faction. Bring the unique abilities of each character class to six PvP modes, including the new Battle Arena, and experience the unbeleafable thrills of combat.</p>
+      </div>
+      <div class="game-card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/b/b6/Minecraft_2024_cover_art.png/220px-Minecraft_2024_cover_art.png" alt="Game 2">
+        <h3>Minecraft</h3>
+        <p>CREATE & Build whatever you can imagine in your own infinite world that's unique in every playthrough.EXPLORE & Discover biomes, resources and mobs, and craft your way through a world filled with surprises in the ultimate sandbox game. SURVIVE & Experience unforgettable adventures as you face mysterious foes, traverse exciting landscapes, and travel to perilous dimensions.</p>
+      </div>
+  </section>
+  <footer>
+    <p>&copy; 2025 Game Haven. All rights reserved.</p>
+  </footer>
 </body>
 </html>
