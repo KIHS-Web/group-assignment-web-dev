@@ -3,10 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <title>My portfolio</title>
     <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            background-color: #f4f4f4;
+        }
+        header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        h1 {
+            margin: 0;
+        }
+        .contact-info {
+            margin: 10px 0;
+        }
+        section {
+            background: white;
+            padding: 15px;
+            margin-bottom: 20px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            border-bottom: 2px solid #007BFF;
+            padding-bottom: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+   <div id="flashingLights" class="flashing">
+        <h2>DIANGELO CHACON!</h2>
+    </div>
+    <script>
+        $(document).ready(function() {
+            $('#showExperience').click(function() {
+                $('#experience').slideToggle();
+            });
+        });
+    </script>
+    <div class="contact-info">
+        <p>Email: diangelo.chacon810@stundents.cmcss.net</p>
+        <p>Phone: (123) 456-7890</p>
+        
+    </div>
+</header>
+
+<section>
+    <h2>Objective</h2>
+    <p>Detail-oriented professional seeking a position in your company to leverage skills in commucication .</p>
+</section>
+
+<section>
+    <h2>Experience</h2>
+    <h3>Web Coder - web development </h3>
+    <p>7/8/24 - 5/23/25</p>
+    <ul>
+        <li>Task manager/ eko trek webpage</li>
+        <li>site tester/project 3</li>
+        <li>made the bathroom chart</li>
+    </ul>
+    
+    <h3>Web coder - Computer science</h3>
+    <p>7/10/23 - 5/24/24</p>
+    <ul>
+        <li>main coder/ portfolio</li>
+        <li>site tester/ team game</li>
+        <li>project planner webpage dev</li>
+    </ul>
+</section>
+
+<section>
+    <h2>Education</h2>
+    <h3>Diploma </h3>
+    <p>Kirkwood High School, 2025</p>
+</section>
+
+<section>
+    <h2>Skills</h2>
+    <ul>
+        <li>Attentiopn to details</li>
+        <li>Problem solving</li>
+        <li>Fluient in english</li>
+    </ul>
+</section>
+<section>
+    <h2>Resume</h2>
+   
+   
+   
+</section>
+<style>
         body {
             font-family: Arial, sans-serif;
             text-align: center;
@@ -20,7 +112,7 @@
             margin: 20px;
         }
         .flashing {
-            animation: flash 1s infinite;
+            animation: flash 9s infinite;
         }
         @keyframes flash {
             0% { opacity: 1; }
@@ -28,35 +120,7 @@
             100% { opacity: 1; }
         }
     </style>
-</head>
-<body>
-
-    <h1>Welcome to My Portfolio</h1>
-    <div id="skills">
-        <h2>My Skills</h2>
-        <p>Good Communication</p>
-        <p>Diligent Worker</p>
-        <p>diamond in seige</p>
-    </div>
-
-    <button id="showExperience">Show My Past Experience</button>
-    <div id="experience">
-        <h2>My Past Experience</h2>
-        <p>Diploma in Computer Science</p>
-        <p>Completed Projects: Project A, Project B, Project C</p>
-    </div>
-
-    <div id="flashingLights" class="flashing">
-        <h2>DIANGELO CHACON!</h2>
-    </div>
-
-    <script>
-        $(document).ready(function() {
-            $('#showExperience').click(function() {
-                $('#experience').slideToggle();
-            });
-        });
-    </script>
+    
 
 </body>
 </html>
