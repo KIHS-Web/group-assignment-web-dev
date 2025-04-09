@@ -1,74 +1,108 @@
-<! DOCTYPE html>
-
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>My Resume</title>
 
- <script src = "https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"> </script>    
 
 
- <style>
-#heart {
-position: relative;
- width: 100px;
- height: 90px;
+
+body{
+    background-color: white;
 }
 
-  #heart:before, #heart:after {
-position: absolute;
-   content: "";
-   left: 50px;
-   top:0;
-   width: 50px;
-   height: 80px;
-   background: #ffc4d8;
-   border-radius: 50px 50px 0 0;
-   transform: rotate(-45deg);
-   transform-origin: 0 100%;
-   
-  }
-
-  #heart:after {
-   left: 0;
-   transform: rotate(45deg);
-   transform-origin: 100% 100%;
-  }
-
-
-
+h1{
+    font-size: 100px;
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ff9fcc;
   
- </style>
+}
+
+h2{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+color: #ffaed2;
+font-size: 50px;
+}
+
+h3{
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+font-size: 70px;
+  color: #ff9fcc;
+}
+
+p{
+font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color: #ff9fcc;
+}
+
+
+.divider {
+  font-size: 30px;
+  display: flex;
+  align-items: center;
+}
+.divider::before, .divider::after {
+  flex: 1;
+  content: '';
+  padding: 3px;
+  background-color: #ffdbeb;
+  margin: 2px;
+}
+
+
+.flex-container {
+  display: flex;
+  background-color: rgb(255, 255, 255);
+}
+
+.flex-container > div {
+  background-color: #ffffff;
+  margin: 10px;
+  padding: 20px;
+  font-size: 30px;
+}
+
+
+
+
+
+
+
+ 
 </head>
-
-<center><h1> Such a totally normal Website !</h1> </center>
-
-<style>
-    
-    
-h1 {
-color: pink;
-  }
-</style>
-
 <body>
-    <div id="heart"></div>
-    <script>
-        $("body").append("<center><button>I wonder what happens if you click me! :3 </button></center>");
-          $("button").on("click", greatValentines); 
-          $("button").css("border-radius", "5px");
-          $("button").css({"background-color":"pink", 
-    	    "color":"white"});
-    	    $("h1").css({"text-color": "pink"})
-    	    
-    	     function greatValentines()
-    	    {
-    	        alert(" Suprise, Happy Valentines Silly!");
-    	    }
+<center><h1> Na'Riah Washington</h1> </center>
 
-      $("#heart").click(function(){
+<center><h2> Digital Artist</h2></center>
+<center><p> Phone: xxx-xxx-xxxx | Email: inserthere@gmail.com | 
+    location : Clarksville TN </p> </center>
 
-                $("div").animate({height: "300px", width: "300px"}, "fast");
-            })
-        
-    </script>
-    
-    
+    <script src="resume-animations.js"></script>
+
+<div class="divider"></div>
+
+
+<div class="flex-container">
+  <div>
+<img src="lukaa.jpg" alt="Luka" width="500" height="500">
+
+
+
+  </div>
+  <div>
+  <h3> About Me</h3>
+<p> - Junior in highschool</p>
+<p> - Started taking drawing more seriously
+    in early middle school, traditonally. Eventually
+    started to draw digitally </p>
+
+  </div>
+
+
+
+
+
+</div>
 </body>
+</html>
