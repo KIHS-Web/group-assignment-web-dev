@@ -44,12 +44,66 @@
             width: 100%;
             bottom: 0;
         }
+               .resume-container {
+            margin: 20px;
+        
+        }
+        .resume-content {
+            display: none;
+            padding: 10px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            background-color: #c0392b;
+            color: white;
+        }
+        .resume-button {
+            cursor: pointer;
+            background-color: grey;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            width: 250px;
+            height: 100px;
+            position: relative;
+            top: 0px;
+            left: 43%;
+        }
     </style>
 </head>
 <body>
     <header>
         <h1><em><strong>Jason McBride's Portfolio</strong></em></h1>
     </header>
+    <div class="resume-container">
+    <button class="resume-button" onclick="toggleResume()">My Resume</button>
+    <div class="resume-content" id="resumeContent">
+        <h2>Jason McBride</h2>
+        <p>123-654-2341 | jason.mcbride364@students.cmcss.net | Clarksville, TN
+</p>
+        <h3>Experience</h3>
+        <ul>
+            <li>Cook | 06/2024 - 03/2025 - Created and maintained an inpatient care log that noted patient medical history, medications, and diagnoses
+Educated patients on their conditions and prescribed medications
+Provided customer service and was involved in training [x] new team members each month
+Provided customer service and was involved in training [x] new team members each month
+Managed the work of [x] employees, increasing crew efficiency by [x]%
+</li>
+         
+        </ul>
+        <h3>Education</h3>
+        <ul>
+            <li>Kirkwood High | Clarksville, TN
+</li>
+        </ul>
+        <h3>Skills</h3>
+        <ul>
+            <li>Customer service</li>
+            <li>Restaurant experience</li>
+            <li>Communication skills</li>
+        </ul>
+    </div>
+</div>
     <div class="portfolio" id="portfolio"></div>
     <footer>
         
@@ -69,6 +123,14 @@
             projectDiv.innerHTML = `<h2>${project.title}</h2><p>${project.description}</p>`;
             portfolioDiv.appendChild(projectDiv);
         });
+          function toggleResume() {
+        var content = document.getElementById("resumeContent");
+        if (content.style.display === "none" || content.style.display === "") {
+            content.style.display = "block";
+        } else {
+            content.style.display = "none";
+        }
+    }
     </script>
 </body>
 </html>
