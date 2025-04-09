@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel='stylesheet' href='style.css'>
+<title> resume website </title>
+</head>
+
+<body>
+    <h1> Matthew thompson </h1>
+<P> My name is matthew thompson
+    <br>
+    this is my resume website
+     </P>
+
+     <P> 
+         skills:
+         <ul>
+             <li> coding </li>
+             <li> computer science  </li>
+             <li> web design </li>
+         </ul>
+     </P>
+</body>
+</html>
